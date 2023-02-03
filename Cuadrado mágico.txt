@@ -1,0 +1,52 @@
+package Paquete;
+import java.util.*;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        
+    	Scanner sc = new Scanner(System.in); //Se usa para capturar datos 
+        System.out.print("Ingrese el tamaño que desea del cuadrado magico: ");
+        int N = sc.nextInt(); //Permite almacenar un valor por teclado 
+        int [][] matriz = new int[N][N]; //Se instancia la matriz 
+        
+        int fila = N/2;
+    	int columna = N-1;
+	
+    	//Se rellena la matriz
+    	for (int num = 1; num <= N*N; ) 
+    	{
+    		if (fila == -1 && columna == N) //Se comprueba si la posición actual está por fuera de la matriz
+    		{
+    			columna = N-2;
+    			fila = 0;
+    		}
+			else 
+			{
+				if (columna == N)
+					columna = 0;
+		
+					if (fila < 0)
+						fila = N-1;
+			}
+		
+		if (matriz[fila][columna] != 0) //Se verifica si la posicion de la matriz ya tiene un valor asignado
+		{
+			columna -= 2;
+			fila++;
+			continue; //Salta a la siguiente iteracion
+		}
+	            else
+	            	matriz[fila][columna] = num++;
+	            	columna++;  fila--; //Se suma en la columna y se resta en la fila para cambiar la posición
+	        }
+    	
+        //Se imprime el cuadrado magico
+        for(int i=0; i<N; i++) 
+    	{
+    		for(int j=0; j<N; j++)
+    			System.out.print(matriz[i][j] + " ");
+    		System.out.println();
+    	}
+    }   
+}
